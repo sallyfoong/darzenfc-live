@@ -1,26 +1,27 @@
-name: Manual workflow
+name: Auto Deploy Main Branch
 
 on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: 'Person to greet'
-        default: 'World'
-        required: true
-        type: string
+  push:
+    branches:
+      - main
 
 jobs:
-  greet:
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
+
     - name: Copy images to deployment path
       run: |
         export DEPLOYPATH=/home/darzenfc/public_html/cms/live
-        cp -R images $DEPLOYPATH
-      
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+        cp -R ${{ github.workspace }}/deployment-package $DEPLOYPATH
+
+    - name: Push changes to live
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Auto deploy to live"
+        git push origin main
