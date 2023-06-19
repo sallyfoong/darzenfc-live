@@ -24,6 +24,11 @@ jobs:
   greet:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
+    deployment:
+  tasks:
+    - export DEPLOYPATH=/home/darzenfc/public_html/cms/live
+    - /bin/cp -R images $DEPLOYPATH
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
