@@ -1,0 +1,13 @@
+[
+	{
+		"name": "localhost",
+		"host": "ftp.darzenfc.xyz",
+		"port": 21,
+		"type": "ftp",
+		"username": "darzencms@darzenfc.xyz",
+		"password": "Sallyfoong1997@",
+		"path": "/",
+		"autosave": true,
+		"confirm": true
+	}
+]
