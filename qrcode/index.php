@@ -35,7 +35,7 @@ if (isset($_REQUEST['data']) && isset($_REQUEST['pageno'])) {
 
         echo '<div class="column"><img src="' . $PNG_WEB_DIR . basename($filename) . '" />' . '<p>' . $_REQUEST['data'] . '+' . $x . ' </p></div>';
     }
-
+}
     // Generate JavaScript code to open the print/preview page
     echo '
     <script>
@@ -104,6 +104,6 @@ if (isset($_REQUEST['data']) && isset($_REQUEST['pageno'])) {
     <button onclick="toggleFormVisibility(); printPreview();">Print/Preview</button>';
 
     echo '</div>';
-}
+
 
 ?>
