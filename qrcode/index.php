@@ -63,11 +63,11 @@ p {
     margin: 0;
 }
 </style>
-<form action="index.php" method="post">
+<form action="index.php" method="post" onsubmit="printPage(event)">
     <input name="data"
         value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';
     echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
-    echo '<input type="submit" value="GENERATE"><button onclick="printPage()">PRINT</button>
+    echo '<input type="submit" value="GENERATE">
 </form>';echo '
 <script>
     function printPage() {
