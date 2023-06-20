@@ -12,12 +12,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Copy images to deployment path
-      run: |
-        export DEPLOYPATH=/home/darzenfc/public_html/cms/live
-        cp -R $DEPLOYPATH
-
+      
     - name: Push changes to live
       run: |
         git config --local user.email "action@github.com"
