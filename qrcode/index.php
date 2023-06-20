@@ -52,8 +52,5 @@
         
     echo '
         <input type="submit" value="GENERATE"></form><hr/>';
-        
-    // benchmark
-    QRtools::timeBenchmark();    
-
+  
     
