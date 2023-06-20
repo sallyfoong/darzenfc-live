@@ -29,7 +29,6 @@
         if (trim($_REQUEST['data']) == '')
             die('data cannot be empty! <a href="?">back</a>');
             for ($x = 0; $x <= $_REQUEST['pageno']; $x++) {
-
             echo $x;
             // user data
             $filename = $PNG_TEMP_DIR.'test'.md5($_REQUEST['data'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
