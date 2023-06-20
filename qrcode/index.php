@@ -36,8 +36,10 @@ echo '<div class="container">';
 echo '<script>
     window.onload = function() {
         var form = document.querySelector("form");
+        form.style.display = "none";
         form.submit();
         window.print();
+        form.style.display = "block";
     }
 </script>';
 }
