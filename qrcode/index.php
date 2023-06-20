@@ -19,9 +19,7 @@
     
     //processing form input
     //remember to sanitize user input in real-life solution !!!
-    $errorCorrectionLevel = 'L';
-    if (isset($_REQUEST['level']) && in_array($_REQUEST['level'], array('L','M','Q','H')))
-        $errorCorrectionLevel = $_REQUEST['level'];    
+    $errorCorrectionLevel = 'H';
 
     $matrixPointSize = 2;
 
@@ -49,11 +47,7 @@
     
     //config form
     echo '<form action="index.php" method="post">
-        Data:&nbsp;<input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp;
-        ECC:&nbsp;<select name="level">
-            <option value="H"'.(($errorCorrectionLevel=='H')?' selected':'').'>H - best</option>
-        </select>&nbsp;
-        ';     
+        Data:&nbsp;<input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';     
    
         
     echo '
