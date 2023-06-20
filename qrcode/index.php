@@ -57,6 +57,10 @@
       width: 100%;
       height: auto;
     }
+    p{
+        font-size:11px;
+        margin:0;
+    }
   </style><form action="index.php" method="post">
        <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';   
        echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
