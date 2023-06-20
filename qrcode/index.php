@@ -28,6 +28,7 @@
         //it's very important!
         if (trim($_REQUEST['data']) == '')
             die('data cannot be empty! <a href="?">back</a>');
+            echo $_REQUEST['pageno'];
            foreach ($_REQUEST['pageno'] as $each){
             // user data
             $filename = $PNG_TEMP_DIR.'test'.md5($_REQUEST['data'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
@@ -42,4 +43,4 @@
     echo '<form action="index.php" method="post">
        <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';   
        echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
-       echo '<input type="submit" value="GENERATE"></form> />';
+       echo '<input type="submit" value="GENERATE"></form>';
