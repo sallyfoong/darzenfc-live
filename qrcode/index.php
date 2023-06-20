@@ -33,22 +33,14 @@
         $filename = $PNG_TEMP_DIR.'test'.md5($_REQUEST['data'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
         QRcode::png($_REQUEST['data'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
         
-    } else {    
-    
-        //default data
-        echo 'You can provide data in GET parameter: <a href="?data=like_that">like that</a><hr/>';    
-        QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
-        
-    }    
+    }
         
     //display generated file
     echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><hr/>';  
     
     //config form
     echo '<form action="index.php" method="post">
-       <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';     
-   
-        
+       <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';             
     echo '
         <input type="submit" value="GENERATE"></form><hr/>';
   
