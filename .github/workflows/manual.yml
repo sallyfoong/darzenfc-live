@@ -1,4 +1,4 @@
-name: Auto Deploy Main Branch
+name: Auto Deployment
 
 on:
   push:
@@ -12,11 +12,18 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
-    - name: Push changes to live
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add -A  # Stage all changes, including deletions and new files
-        git commit -m "Auto deploy to live"
-        git push origin main
+
+    - name: Install dependencies
+      run: npm install  # Replace with your build or dependency installation commands
+
+    - name: Build project
+      run: npm run build  # Replace with your build command
+
+    - name: Deploy to server
+      uses: easingthemes/ssh-deploy@v2.2.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        server-ip: 101.99.70.222
+        server-username: darzenfc
+        local-path: /home/darzenfc/public_html/cms/live  # Replace with the path to your build artifacts or deployment files
+        remote-path: https://github.com/sallyfoong/darzenfc-live  # Replace with the remote path where you want to deploy your code
