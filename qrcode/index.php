@@ -40,8 +40,6 @@
     
     //config form
     echo '<form action="index.php" method="post">
-       <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';             
-    echo '
-        <input type="submit" value="GENERATE"></form><hr/>';
-  
-    
+       <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';   
+       echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
+       echo '<input type="submit" value="GENERATE"></form> />';
