@@ -28,11 +28,13 @@
         //it's very important!
         if (trim($_REQUEST['data']) == '')
             die('data cannot be empty! <a href="?">back</a>');
+            echo '<div class="container">'
             for ($x = 1; $x <= $_REQUEST['pageno']; $x++) {
             // user data
             $filename = $PNG_TEMP_DIR.'test'.md5($_REQUEST['data'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($_REQUEST['data'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);   
-            echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" />'.'<br />'.$_REQUEST['data'].'+'.$x;  
+            
+            echo '<div class="column"><img src="'.$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['data'].'+'.$x.' </p></div>';  
            }
     }
         
@@ -40,7 +42,24 @@
     
     
     //config form
-    echo '<form action="index.php" method="post">
+    echo '<style>
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .column {
+      flex-basis: 20%;
+      text-align: center;
+      padding: 10px;
+    }
+    .column img {
+      width: 100%;
+      height: auto;
+    }
+  </style><form action="index.php" method="post">
        <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';   
        echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
        echo '<input type="submit" value="GENERATE"></form>';
+
+       
