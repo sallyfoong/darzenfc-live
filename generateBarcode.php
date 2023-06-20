@@ -14,13 +14,7 @@ $tblname3 = PRODUCT;
 $screen_type1 = 'Add '.$page_title;
 $screen_type2 = 'Edit '.$page_title;
 
-if(isset($_POST['generate'])){
-    $code=$_POST['pageno'];
-    for ($x = 0; $x <= 10; $x++) {
-        echo "<center><img alt='testing' src='barcode.php?codetype=Code39&size=50&text=".$code.$x."&print=true'/></center>";
-      }
-    
-}
+
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -37,58 +31,6 @@ jQuery(document).ready(function() {
     });
 });
 </script>
-<script>
-function printBarcode() {
-    const pageno = document.getElementById("pageno").value; // get the value of the pageno input field
-    var productid = document.getElementById("productName").value;
-    const productname = productid;
-    console.log(productname);
-    if (!pageno) {
-        alert("pageno is invalid");
-    }
-    var code;
-    var url;
-    var arrayOfBarcode = []; // create an empty array
-    for (let i = 0; i < pageno; i++) {
-        code = productName + i; // replace with the text you want to encode in the barcode
-        url = `barcode/barcode.php?codetype=Code39&size=20&text=${code}&print=true`; // URL of the barcode image
-        arrayOfBarcode.push(`<img src="${url}" alt="Barcode image" />`); // add the barcode image HTML to the array
-
-    }
-
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.responseType = "blob"; // set the response type to blob to retrieve the image data as a binary blob
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            const imgData = xhr.response; // retrieve the binary image data
-            const imgUrl = URL.createObjectURL(imgData); // create an object URL for the image data
-            const a = window.open('', '', 'height=1480, width=1000');
-            a.document.write('<html>');
-            a.document.write('<div style="margin:0">');
-            arrayOfBarcode.forEach(function(imageHtml) {
-                a.document.write(imageHtml); // display the image in the new window
-            });
-            a.document.write('</div></html>');
-            a.document.close();
-            setTimeout(() => {
-                a.print();
-            }, 3000); // wait for 5 seconds before showing the print dialog
-            URL.revokeObjectURL(imgUrl); // release the object URL to free up memory
-        }
-    };
-    xhr.send();
-}
-</script>
-<style>
-@page {
-    size: auto;
-    /* auto is the initial value */
-    margin: 0mm;
-    padding: 0;
-    /* this affects the margin in the printer settings */
-}
-</style>
 
 <body>
     <!-- ============================================================== -->
