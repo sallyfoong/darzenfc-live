@@ -32,7 +32,14 @@ echo '<div class="container">';
         QRcode::png($_REQUEST['data'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['data'].'+'.$x.'
     </p>
-</div>';
+</div>';// Automatically trigger the print action using JavaScript
+echo '<script>
+    window.onload = function() {
+        var form = document.querySelector("form");
+        form.submit();
+        window.print();
+    }
+</script>';
 }
 }
 
@@ -63,7 +70,7 @@ p {
     margin: 0;
 }
 </style>
-<form action="index.php" method="post" onsubmit="printPage(event)">
+<form action="index.php" method="post">
     <input name="data"
         value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';
     echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
