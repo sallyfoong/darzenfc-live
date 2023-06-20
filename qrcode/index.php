@@ -1,6 +1,5 @@
 <?php    
    
-    echo "<h1>PHP QR Code</h1><hr/>";
     
     //set it to writable location, a place for temp generated PNG files
     $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
@@ -47,7 +46,7 @@
     
     //config form
     echo '<form action="index.php" method="post">
-        Data:&nbsp;<input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';     
+       <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';     
    
         
     echo '
