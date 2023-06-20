@@ -38,12 +38,20 @@
         <script>
             function printPage() {
                 window.print();
+                setTimeout(function() {
+                    // Check if the print dialog is closed
+                    if (!window.self || window.self.closed || typeof window.self.print === "undefined") {
+                        // Clear the QR code images and return to the form action
+                        document.getElementById("qrcode-images").innerHTML = "";
+                        document.getElementById("qr-form").style.display = "block";
+                    }
+                }, 100);
             }
             window.onload = printPage;
         </script>';
         
         // Hide the form interface
-        echo '<style>form { display: none; }</style>';
+        echo '<style>#qr-form { display: none; }</style>';
     }
         
     // Display the config form
@@ -68,9 +76,11 @@
                 margin: 0;
             }
         </style>
-        <form action="index.php" method="post">
-            <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';
+        <div id="qrcode-images">
+            <form id="qr-form" action="index.php" method="post">
+                <input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';
     echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
     echo '<input type="submit" value="GENERATE">
-        </form>';
+            </form>
+        </div>';
 ?>
