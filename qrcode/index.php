@@ -67,6 +67,20 @@ p {
     <input name="data"
         value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';
     echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
-    echo '<input type="submit" value="GENERATE">
-</form>';
+    echo '<input type="submit" value="GENERATE"><button onclick="printPage()">PRINT</button>
+</form>';echo '
+<script>
+    function printPage() {
+        // Hide the form
+        var form = document.querySelector("form");
+        form.style.display = "none";
+
+        // Print the page
+        window.print();
+
+        // Show the form again after printing
+        form.style.display = "block";
+    }
+</script>
+';
 ?>
