@@ -135,7 +135,7 @@ p {
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $page_title; ?> (One Page 33 barcode)
                                 </h4>
-                                <form action="index.php" method="post">
+                                <form action="" method="post">
                                     <input type="text" name="txtid" value="<?php echo $txtid; ?>" class="dnone">
                                     <div class="form-group">
                                         <label for="hue-demo">Product</label>
