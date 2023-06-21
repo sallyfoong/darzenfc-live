@@ -49,18 +49,6 @@ array('Product Name', 'mdi mdi-domain', 'product_list.php','18'),
 ),
         'pin' => array('12','16','18','19'),
 ),array(
-"Product",
- 'mdi mdi-codepen',
-        'javascript:void(0)',
-        'y',
-       'expand' => array(
-array('Brand', 'mdi mdi-domain', 'brand_list.php','12'),
-array('Item', 'mdi mdi-domain', 'item_list.php','16'),
-array('Create Barcode', 'mdi mdi-domain', 'generateBarcode.php','19'),
-array('Product Name', 'mdi mdi-domain', 'product_list.php','18'),
-),
-        'pin' => array('12','16','18','19'),
-),array(
     "Order",
      'mdi mdi-codepen',
             'javascript:void(0)',
