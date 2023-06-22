@@ -35,7 +35,8 @@ function copyToClipboard() {
         $short_url=substr(md5($url.mt_rand()),0,8);
         $qrsql = "INSERT INTO short_urls (long_url, short_url)VALUES('$url','$short_url')";  
         $rsqrsql = @mysqli_query($connect,$qrsql);  
-        echo "<br><input type='text' id='shortURL' value='$short_url' readonly>";
+        $shorturl_fill = "https://darzenfc.xyz/cms/redirect.php?param=".$short_url;
+        echo "<br><input type='text' id='shortURL' value='$shorturl_fill' readonly>";
         echo "<button onclick='copyToClipboard()'>Copy URL</button>";
     }
     ?>
