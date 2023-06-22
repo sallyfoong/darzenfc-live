@@ -22,6 +22,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
         display: flex;
         flex-direction: column;
         align-items: center;
+        width:50%
     }
 
     input[type="text"],
@@ -31,6 +32,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
 
     #shortURL, .urlInput{
         width: 100%;
+        height:40px;
     }
     </style>
 </head>
