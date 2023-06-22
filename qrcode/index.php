@@ -1,6 +1,8 @@
 <?php 
-include '../include/connection.php'; 
-$tblname3 = PRODUCT;
+
+$connect = @mysqli_connect("127.0.0.1:3306", "darzenfc_cms", 'Sallyfoong1997@', "darzenfc_cms");
+
+$tblname3 = "product";
 
 //set it to writable location, a place for temp generated PNG files
 $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
