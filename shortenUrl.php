@@ -41,7 +41,7 @@
 
     function googleShortURL($longurl)
     {
-        $data = array('dynamicLinkInfo' => array('dynamicLinkDomain' => 'beyourdi', 'link' => $longurl));
+        $data = array('dynamicLinkInfo' => array('dynamicLinkDomain' => 'beyourdi.page.link', 'link' => $longurl));
         $data_string = json_encode($data);
 
         $ch = curl_init('https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=YOUR_API_KEY');
