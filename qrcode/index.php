@@ -77,8 +77,9 @@ p {
 <form action="index.php" method="post">
         <select name="productName" id="productName" class="form-control">
         <?php
-        echo $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
+        $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
         $result = mysqli_query($connect, $query);
+        var_dump($result);
         while ($row = mysqli_fetch_assoc($result)) {
         echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
         }
