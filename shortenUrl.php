@@ -32,7 +32,7 @@ function copyToClipboard() {
     <?php 
     if(isset($_POST['url_value'])){
         $url=$_POST["url_value"];
-        $short_url=substr(md5($url.mt_rand()),0,8);
+        $short_url=substr(md5($url.mt_rand()),0,16);
         $qrsql = "INSERT INTO short_urls (long_url, short_url)VALUES('$url','$short_url')";  
         $rsqrsql = @mysqli_query($connect,$qrsql);  
         $shorturl_fill = "https://darzenfc.xyz/cms/redirect.php?param=".$short_url;
