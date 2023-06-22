@@ -44,8 +44,17 @@
     
         $postData = array(
             'dynamicLinkInfo' => array(
-                'domainUriPrefix' => 'https://beyourdi.page.link', // Replace with your dynamic links domain
+                'domainUriPrefix' => 'https://beyourdiary.page.link', // Replace with your dynamic links domain
                 'link' => $link,
+                'androidInfo' => array(
+                    'androidPackageName' => 'beyourdiary.page.link.android', // Replace with your Android package name
+                ),
+                'iosInfo' => array(
+                    'iosBundleId' => 'beyourdiary.page.link.ios', // Replace with your iOS bundle ID
+                ),
+                'navigationInfo' => array(
+                    'enableForcedRedirect' => true,
+                ),
                 'fallbackLink' => "https://www.beyourdiary.co/",
             ),
             'suffix' => array(
