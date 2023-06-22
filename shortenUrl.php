@@ -8,7 +8,9 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
 
 <html>
 
-<head>
+<head>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <style>
     body {
         display: flex;
@@ -39,7 +41,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
 
 <body>
     <form method="post" action="">
-        <input type="text" name="url_value" placeholder="Enter URL" class="urlInput">
+        <input type="text" name="url_value" placeholder="Enter URL" class="urlInput btn btn-primary btn-lg" >
         <input type="submit" name="original_url">
     
     <?php 
