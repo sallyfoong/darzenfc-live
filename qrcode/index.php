@@ -1,4 +1,7 @@
 <?php 
+include '../include/connection.php'; 
+$tblname3 = PRODUCT;
+
 //set it to writable location, a place for temp generated PNG files
 $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
 
@@ -47,9 +50,9 @@ echo '<script>
 
 //display generated file
 
-
+?>
 //config form
-echo '<style>
+<style>
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -73,6 +76,15 @@ p {
 }
 </style>
 <form action="index.php" method="post">
+        <select name="productName" id="productName" class="form-control">
+        <?php
+        $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
+        $result = mysqli_query($connect, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+        echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
+        }
+        ?>
+        </select>
     <input name="data"
         value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';
     echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
@@ -91,5 +103,3 @@ p {
         form.style.display = "block";
     }
 </script>
-';
-?>
