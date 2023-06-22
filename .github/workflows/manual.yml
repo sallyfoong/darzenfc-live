@@ -19,6 +19,9 @@ jobs:
         php-version: '7.4'
 
     - name: Deploy to production
+      run:  git remote -v
+      
+    - name: Deploy to production
       run:  git push origin
 
 
