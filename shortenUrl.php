@@ -39,32 +39,6 @@
         echo "<button onclick='copyToClipboard()'>Copy URL</button>";
     }
 
-    function googleShortURL($longurl)
-    {
-        $data = array('dynamicLinkInfo' => array('dynamicLinkDomain' => 'beyourdy-3577f.firebaseapp.com', 'link' => $longurl));
-        $data_string = json_encode($data);
-
-        $ch = curl_init('https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=AIzaSyDfc6efTLP-OEkPmSBikxSd-av2YVH4aPU');
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt(
-            $ch,
-            CURLOPT_HTTPHEADER,
-            array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($data_string)
-            )
-        );
-
-        $result = curl_exec($ch);
-
-        $decodeResult = json_decode($result);
-        $firebaseShortURL = isset($decodeResult->shortLink) ? $decodeResult->shortLink : '';
-        return $firebaseShortURL;
-    }
     function generateGoogleDynamicLink($link) {
         $apiEndpoint = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=AIzaSyDfc6efTLP-OEkPmSBikxSd-av2YVH4aPU'; // Replace with your API endpoint and API key
     
@@ -96,6 +70,7 @@
     
         if ($httpCode == 200) {
             $responseData = json_decode($response, true);
+            var_dump($responseData);
             return $responseData['shortLink'];
         } else {
             // Handle the error case
