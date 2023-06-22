@@ -39,7 +39,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
     <form method="post" action="">
         <input type="text" name="url_value" placeholder="Enter URL">
         <input type="submit" name="original_url">
-    </form>
+    
     <?php 
     if(isset($_POST['url_value'])){
         $url = $_POST["url_value"];
@@ -51,6 +51,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
         echo "<br><br><button onclick='copyToClipboard()'>Copy URL</button>";
     }
     ?>
+    </form>
     <script>
     function copyToClipboard() {
         /* Get the text field */
