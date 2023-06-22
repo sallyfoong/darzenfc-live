@@ -17,11 +17,18 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
-
-    - name: Deploy to production
-      run:  git remote -v
       
     - name: Deploy to production
-      run:  git push origin
+      run:  git remote set-url origin https://github.com/sallyfoong/darzenfc-live
+      
+    - name: done push
+      run:  git push https://github.com/sallyfoong/darzenfc-live
+      
+      
+    - name: done pull
+      run:  git pull https://github.com/sallyfoong/darzenfc-live
+
+      
+
 
 
