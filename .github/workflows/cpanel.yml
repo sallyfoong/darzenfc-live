@@ -23,11 +23,6 @@ jobs:
      
     - name: Deploy to production
       run:  git remote set-url origin git@github.com:sallyfoong/darzenfc-live.git
-      
-    - name: done pull
-      run:  git pull origin
-
-      
 
 
 
