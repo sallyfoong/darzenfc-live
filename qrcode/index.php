@@ -34,10 +34,12 @@ die('data cannot be empty! <a href="?">back</a>');
 $datainfo="SELECT barcode_prefix, barcode_next_number FROM projects WHERE id='1'";
 $rowRetrieveInfo = mysqli_query($connect, $datainfo);
 $data = mysqli_fetch_assoc($rowRetrieveInfo);
+$barcode_next_number = $data['barcode_next_number'];
 
 echo '<div class="container">';
-    for ($x = 1; $x
+    for ($x = $barcode_next_number; $x
     <= $_REQUEST['pageno']; $x++) { // user data
+        $urlRtn = "https://darzenfc.xyz/cms/html/generateBarcode.php?barcode=".$x;
         $filename=$PNG_TEMP_DIR.'test'.md5($_REQUEST['productName'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
         QRcode::png($_REQUEST['productName'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
@@ -52,6 +54,10 @@ echo '<script>
     }
 </script>';
 }
+
+$finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
+$sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
+$query2 = mysqli_query($connect,$sqlupd); 
 }
 
 //display generated file
