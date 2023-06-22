@@ -61,7 +61,7 @@
 
         $decodeResult = json_decode($result);
         $firebaseShortURL = isset($decodeResult->shortLink) ? $decodeResult->shortLink : '';
-
+console.log(firebaseShortURL);
         return $firebaseShortURL;
     }
     ?>
