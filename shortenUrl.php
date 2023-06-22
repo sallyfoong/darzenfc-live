@@ -40,17 +40,18 @@
     }
 
     function generateGoogleDynamicLink($link) {
-        $apiEndpoint = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=AIzaSyDfc6efTLP-OEkPmSBikxSd-av2YVH4aPU'; // Replace with your API endpoint and API key
+        // API endpoint and API key
+        $apiEndpoint = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=YOUR_API_KEY';
     
         $postData = array(
             'dynamicLinkInfo' => array(
-                'domainUriPrefix' => 'https://beyourdiary.page.link', // Replace with your dynamic links domain
+                'domainUriPrefix' => 'https://beyourdiary.page.link',
                 'link' => $link,
                 'androidInfo' => array(
-                    'androidPackageName' => 'beyourdiary.page.link.android', // Replace with your Android package name
+                    'androidPackageName' => 'beyourdiary.page.link.android',
                 ),
                 'iosInfo' => array(
-                    'iosBundleId' => 'beyourdiary.page.link.ios', // Replace with your iOS bundle ID
+                    'iosBundleId' => 'beyourdiary.page.link.ios',
                 ),
                 'navigationInfo' => array(
                     'enableForcedRedirect' => true,
@@ -62,9 +63,7 @@
             ),
         );
     
-       
         $postData['dynamicLinkInfo']['parameters'] = strtotime(date("Y-m-d h:i:sa"));
-        
     
         $ch = curl_init($apiEndpoint);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
@@ -76,7 +75,7 @@
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     
         curl_close($ch);
-    return  $httpCode;
+    
         if ($httpCode == 200) {
             $responseData = json_decode($response, true);
             return $responseData['shortLink'];
@@ -85,6 +84,7 @@
             return null;
         }
     }
+    
     
     ?>
 </body>
