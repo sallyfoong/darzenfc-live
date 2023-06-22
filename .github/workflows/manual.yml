@@ -20,5 +20,5 @@ jobs:
 
     - name: Deploy to production
       run: |
-        rsync -avz --delete --exclude='.git*' --exclude='vendor/' ${{ github.workspace }}/ username@example.com:/path/to/destination
+        rsync -avz --delete --exclude='.git*' --exclude='vendor/' ${{ github.workspace }}/ darzenfc.xyz:/path/to/destination
 
