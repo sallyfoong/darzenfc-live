@@ -19,6 +19,6 @@ jobs:
         php-version: '7.4'
 
     - name: Deploy to production
-      run: |
-        rsync -avz --delete --exclude='.git*' --exclude='vendor/' ${{ github.workspace }}/ darzenfc_cms@darzenfc.xyz:/path/to/destination
+      run:  git pull origin main
+
 
