@@ -34,7 +34,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
 
     #shortURL, .urlInput{
         width: 100%;
-        height:400px;
+        height:40px;
     }
     </style>
 </head>
@@ -52,7 +52,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
         $rsqrsql = @mysqli_query($connect, $qrsql);  
         $shorturl_fill = "https://darzenfc.xyz/cms/redirect.php?param=" . $short_url;
         echo "<br><br><br><input type='text' id='shortURL' value='$shorturl_fill' readonly>";
-        echo "<br><br><button onclick='copyToClipboard()'>Copy URL</button>";
+        echo "<br><br><button onclick='copyToClipboard()' class=\"btn btn-primary btn-lg\">Copy URL</button>";
     }
     ?>
     </form>
