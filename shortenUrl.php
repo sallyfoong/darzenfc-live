@@ -34,7 +34,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
 
     #shortURL, .urlInput{
         width: 100%;
-        height:40px;
+        height:400px;
     }
     </style>
 </head>
