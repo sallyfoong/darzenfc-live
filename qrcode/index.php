@@ -33,10 +33,12 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $barcode_next_number = $data['barcode_next_number'];
     echo '<div class="container">';
     for ($x = $barcode_next_number; $x
-    <= $_REQUEST['pageno']; $x++) { 
+    <= $_REQUEST['pageno']; $x++) { // user data
         $filename=$PNG_TEMP_DIR.'test'.md5($_REQUEST['productName'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
         QRcode::png($_REQUEST['productName'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-        echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'  </p> </div>';// Automatically trigger the print action using JavaScript
+        echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
+            </p>
+        </div>';// Automatically trigger the print action using JavaScript
         echo '<script>
             window.onload = function() {
                 var form = document.querySelector("form");
@@ -46,10 +48,9 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             }
         </script>';
     }
-    echo '</div>';
-    // $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
-    // $sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
-    // $query2 = mysqli_query($connect,$sqlupd); 
+    $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
+    $sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
+    $query2 = mysqli_query($connect,$sqlupd); 
 }
 
 //display generated file
