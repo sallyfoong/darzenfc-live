@@ -34,9 +34,8 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     echo '<div class="container">';
     for ($x = $barcode_next_number; $x
     <= $_REQUEST['pageno']; $x++) { 
-        $urlRtn = "https://darzenfc.xyz/cms/html/generateBarcode.php?barcode=".$x;
-        $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
-        QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+        $filename=$PNG_TEMP_DIR.'test'.md5($_REQUEST['productName'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
+        QRcode::png($_REQUEST['productName'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
             </p>
         </div>';// Automatically trigger the print action using JavaScript
