@@ -44,7 +44,7 @@
         $data = array('dynamicLinkInfo' => array('dynamicLinkDomain' => 'beyourdi.page.link', 'link' => $longurl));
         $data_string = json_encode($data);
 
-        $ch = curl_init('https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=YOUR_API_KEY');
+        $ch = curl_init('https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=AIzaSyDfc6efTLP-OEkPmSBikxSd-av2YVH4aPU');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
