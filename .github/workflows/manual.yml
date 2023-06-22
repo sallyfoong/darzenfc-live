@@ -19,14 +19,14 @@ jobs:
         php-version: '7.4'
       
     - name: Deploy to production
-      run:  git remote set-url origin https://github.com/sallyfoong/darzenfc-live
+      run:  git remote set-url origin git@github.com:sallyfoong/darzenfc-live.git
       
     - name: done push
-      run:  git push https://github.com/sallyfoong/darzenfc-live
+      run:  git push origin
       
       
     - name: done pull
-      run:  git pull https://github.com/sallyfoong/darzenfc-live
+      run:  git pull origin
 
       
 
