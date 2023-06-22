@@ -38,9 +38,9 @@ $barcode_next_number = $data['barcode_next_number'];
 
 $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
 echo '<div class="container">';
-    for ($x = $barcode_next_number; $x
-    <= $finalBarcodeNo; $x++) { // user data
-        $urlRtn = "https://darzenfc.xyz/cms/html/generateBarcode.php?barcode=".$x;
+    for ($x = 0; $x
+    <= $_REQUEST['pageno']; $x++) { // user data
+        $urlRtn = "https://darzenfc.xyz/?barcode=".$barcode_next_number+$x;
         $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
         QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
