@@ -27,27 +27,30 @@ $matrixPointSize = 2;
 
 
 if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
-
-//it's very important!
-if (trim($_REQUEST['productName']) == '')
-die('data cannot be empty! <a href="?">back</a>');
-echo '<div class="container">';
-    for ($x = 1; $x
+    $datainfo="SELECT barcode_prefix, barcode_next_number FROM projects WHERE id='1'";
+    $rowRetrieveInfo = mysqli_query($connect, $datainfo);
+    $data = mysqli_fetch_assoc($rowRetrieveInfo);
+    $barcode_next_number = $data['barcode_next_number'];
+    echo '<div class="container">';
+    for ($x = $barcode_next_number; $x
     <= $_REQUEST['pageno']; $x++) { // user data
         $filename=$PNG_TEMP_DIR.'test'.md5($_REQUEST['productName'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
         QRcode::png($_REQUEST['productName'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-        echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].'+'.$x.'
-    </p>
-</div>';// Automatically trigger the print action using JavaScript
-echo '<script>
-    window.onload = function() {
-        var form = document.querySelector("form");
-        form.submit(); 
-        form.style.display = "none";
-        window.print();
+        echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
+            </p>
+        </div>';// Automatically trigger the print action using JavaScript
+        echo '<script>
+            window.onload = function() {
+                var form = document.querySelector("form");
+                form.submit(); 
+                form.style.display = "none";
+                window.print();
+            }
+        </script>';
     }
-</script>';
-}
+    $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
+    $sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
+    $query2 = mysqli_query($connect,$sqlupd); 
 }
 
 //display generated file
@@ -79,17 +82,14 @@ p {
 <form action="index.php" method="post">
         <select name="productName" id="productName" class="form-control">
         <?php
-        $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
-        $result = mysqli_query($connect, $query);
-        var_dump($result);
-        while ($row = mysqli_fetch_assoc($result)) {
-        echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
-        }
+            $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
+            $result = mysqli_query($connect, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
+            }
         ?>
         </select>
-    <input name="data"
-        value="<?php echo (isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)'); ?>" /> &nbsp;
-    <input type="tel" name="pageno" id="pageno" class="form-control demo" />
+    <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode"/>
     <input type="submit" value="GENERATE">
 </form>
 <script>
