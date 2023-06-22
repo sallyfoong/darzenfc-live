@@ -34,25 +34,24 @@ die('data cannot be empty! <a href="?">back</a>');
 $datainfo="SELECT barcode_prefix, barcode_next_number FROM projects WHERE id='1'";
 $rowRetrieveInfo = mysqli_query($connect, $datainfo);
 $data = mysqli_fetch_assoc($rowRetrieveInfo);
-$barcode_next_number = $data['barcode_next_number'];
+
 echo '<div class="container">';
-    for ($x = $barcode_next_number; $x
+    for ($x = 1; $x
     <= $_REQUEST['pageno']; $x++) { // user data
         $filename=$PNG_TEMP_DIR.'test'.md5($_REQUEST['productName'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
         QRcode::png($_REQUEST['productName'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
         echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
-            </p>
-        </div>';// Automatically trigger the print action using JavaScript
-        echo '<script>
-            window.onload = function() {
-                var form = document.querySelector("form");
-                form.submit(); 
-                form.style.display = "none";
-                window.print();
-            }
-        </script>';
+    </p>
+</div>';// Automatically trigger the print action using JavaScript
+echo '<script>
+    window.onload = function() {
+        var form = document.querySelector("form");
+        form.submit(); 
+        form.style.display = "none";
+        window.print();
     }
-    
+</script>';
+}
 }
 
 //display generated file
