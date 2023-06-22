@@ -46,9 +46,9 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             }
         </script>';
     }
-    $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
-    $sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
-    $query2 = mysqli_query($connect,$sqlupd); 
+    // $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
+    // $sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
+    // $query2 = mysqli_query($connect,$sqlupd); 
 }
 
 //display generated file
