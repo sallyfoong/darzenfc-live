@@ -38,7 +38,7 @@ $barcode_next_number = $data['barcode_next_number'];
 
 $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
 echo '<div class="container">';
-    for ($x = 0; $x
+    for ($x = 1; $x
     <= $_REQUEST['pageno']; $x++) { // user data
         $urlRtn = "https://darzenfc.xyz/?barcode=".$barcode_next_number+$x;
         $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
