@@ -23,7 +23,7 @@
 
 <body>
     <h1>Shorten URL</h1>
-    <form action="#" method="POST">
+    <form action="" method="POST">
         <label for="longURL">Enter URL:</label>
         <input type="text" id="longURL" name="longURL" placeholder="Enter a long URL" required>
         <input type="submit" value="Shorten">
