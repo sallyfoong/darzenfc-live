@@ -32,6 +32,7 @@
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $longURL = $_POST['longURL'];
+        echo $longURL;
         $shortURL = googleShortURL($longURL);
         echo $shortURL;
         echo "<br><input type='text' id='shortURL' value='$shortURL' readonly>";
