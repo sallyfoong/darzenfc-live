@@ -15,6 +15,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
         justify-content: center;
         align-items: center;
         height: 100vh;
+        background-color: black;
     }
 
     form {
@@ -29,7 +30,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
     }
 
     #shortURL {
-        width: 300px;
+        width: 100%;
     }
     </style>
 </head>
@@ -46,8 +47,8 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
         $qrsql = "INSERT INTO short_urls (long_url, short_url) VALUES ('$url', '$short_url')";  
         $rsqrsql = @mysqli_query($connect, $qrsql);  
         $shorturl_fill = "https://darzenfc.xyz/cms/redirect.php?param=" . $short_url;
-        echo "<br><input type='text' id='shortURL' value='$shorturl_fill' readonly>";
-        echo "<button onclick='copyToClipboard()'>Copy URL</button>";
+        echo "<br><br><br><input type='text' id='shortURL' value='$shorturl_fill' readonly>";
+        echo "<br><br><button onclick='copyToClipboard()'>Copy URL</button>";
     }
     ?>
     <script>
