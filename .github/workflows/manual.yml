@@ -17,7 +17,16 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
-      
+        
+        
+    - name: first
+      run: git remote -v
+
+
+    - name: second
+      run: ssh-add ~/.ssh/id_rsa
+
+     
     - name: Deploy to production
       run:  git remote set-url origin git@github.com:sallyfoong/darzenfc-live.git
       
