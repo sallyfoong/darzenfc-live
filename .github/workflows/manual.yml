@@ -20,17 +20,9 @@ jobs:
       
     - name: first
       run: git remote -v
-
-    - name: second
-      run: ssh-add ~/.ssh/id_rsa
-
      
     - name: Deploy to production
       run:  git remote set-url origin git@github.com:sallyfoong/darzenfc-live.git
-      
-    - name: done push
-      run:  git push origin
-      
       
     - name: done pull
       run:  git pull origin
