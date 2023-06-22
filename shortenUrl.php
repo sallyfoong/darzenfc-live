@@ -41,8 +41,8 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
 
 <body>
     <form method="post" action="">
-        <input type="text" name="url_value" placeholder="Enter URL" class="urlInput btn btn-primary btn-lg" >
-        <input type="submit" name="original_url">
+        <input type="text" name="url_value" placeholder="Enter URL" class="urlInput">
+        <input type="submit" name="original_url" class="btn btn-primary btn-lg">
     
     <?php 
     if(isset($_POST['url_value'])){
