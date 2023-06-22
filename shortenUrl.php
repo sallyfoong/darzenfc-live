@@ -29,7 +29,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
         margin-bottom: 10px;
     }
 
-    #shortURL {
+    #shortURL, .urlInput{
         width: 100%;
     }
     </style>
@@ -37,7 +37,7 @@ $connect = @mysqli_connect($host, $username, $password, $databasename);
 
 <body>
     <form method="post" action="">
-        <input type="text" name="url_value" placeholder="Enter URL">
+        <input type="text" name="url_value" placeholder="Enter URL" class="urlInput">
         <input type="submit" name="original_url">
     
     <?php 
