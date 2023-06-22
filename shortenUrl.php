@@ -67,10 +67,9 @@
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     
         curl_close($ch);
-    
+    return  $httpCode;
         if ($httpCode == 200) {
             $responseData = json_decode($response, true);
-            var_dump($responseData);
             return $responseData['shortLink'];
         } else {
             // Handle the error case
