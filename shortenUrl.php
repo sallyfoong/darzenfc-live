@@ -1,5 +1,4 @@
 <?php 
-
 function googleShortURL($longurl)
 {
     $data = array('dynamicLinkInfo' => array('dynamicLinkDomain'=>'beyourdi', 'link' => $longurl));
