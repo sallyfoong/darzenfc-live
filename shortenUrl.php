@@ -33,6 +33,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $longURL = $_POST['longURL'];
         $shortURL = googleShortURL($longURL);
+        echo $shortURL;
         echo "<br><input type='text' id='shortURL' value='$shortURL' readonly>";
         echo "<button onclick='copyToClipboard()'>Copy URL</button>";
     }
@@ -61,7 +62,6 @@
 
         $decodeResult = json_decode($result);
         $firebaseShortURL = isset($decodeResult->shortLink) ? $decodeResult->shortLink : '';
-console.log(firebaseShortURL);
         return $firebaseShortURL;
     }
     ?>
