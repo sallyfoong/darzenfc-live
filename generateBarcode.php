@@ -13,92 +13,10 @@ $tblname1 = $sub_db;
 $tblname3 = PRODUCT;
 $screen_type1 = 'Add '.$page_title;
 $screen_type2 = 'Edit '.$page_title;
-
-//set it to writable location, a place for temp generated PNG files
-$PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
-
-//html PNG location prefix
-$PNG_WEB_DIR = 'temp/';
-
-include "qrcode/qrlib.php";
-
-//ofcourse we need rights to create temp dir
-if (!file_exists($PNG_TEMP_DIR))
-mkdir($PNG_TEMP_DIR);
-
-
-$filename = $PNG_TEMP_DIR.'test.png';
-
-//processing form input
-//remember to sanitize user input in real-life solution !!!
-$errorCorrectionLevel = 'H';
-
-$matrixPointSize = 2;
-
-if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
-    //it's very important!
-    if (trim($_REQUEST['productName']) == '')
-    die('data cannot be empty! <a href="?">back</a>');
-    echo '<div class="container">';
-        for ($x = 1; $x
-        <= $_REQUEST['pageno']; $x++) { // user data
-            $filename=$PNG_TEMP_DIR.'test'.md5($_REQUEST['productName'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
-            QRcode::png($_REQUEST['dataproductName'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].'+'.$x.'
-        </p>
-    </div>';// Automatically trigger the print action using JavaScript
-        echo '<script>
-            window.onload = function() {
-                var form = document.querySelector("form");
-                form.submit(); 
-                form.style.display = "none";
-                window.print();
-            }
-        </script>';
-    }
-}
-
-//display generated file
-
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <?php echo $header; ?>
-<script>
-jQuery(document).ready(function() {
-    jQuery("form").submit(function() {
-        if (jQuery('#pageno').val() == "") {
-            alert("Please fill the Page No");
-            return false;
-        }
-
-        jQuery("#epfform").submit();
-    });
-});
-</script>
-<style>
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.column {
-    flex-basis: 20%;
-    text-align: center;
-    padding: 10px;
-}
-
-.column img {
-    width: 100%;
-    height: auto;
-}
-
-p {
-    font-size: 11px;
-    margin: 0;
-}
-</style>
 
 <body>
     <!-- ============================================================== -->
