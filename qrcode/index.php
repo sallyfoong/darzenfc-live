@@ -36,9 +36,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     <= $_REQUEST['pageno']; $x++) { 
         $filename=$PNG_TEMP_DIR.'test'.md5($_REQUEST['productName'].$x.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
         QRcode::png($_REQUEST['productName'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-        echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
-            </p>
-        </div>';// Automatically trigger the print action using JavaScript
+        echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'  </p> </div>';// Automatically trigger the print action using JavaScript
         echo '<script>
             window.onload = function() {
                 var form = document.querySelector("form");
