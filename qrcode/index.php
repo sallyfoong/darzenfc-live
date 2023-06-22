@@ -51,7 +51,6 @@ echo '<script>
 //display generated file
 
 ?>
-//config form
 <style>
 .container {
     display: flex;
@@ -86,10 +85,10 @@ p {
         ?>
         </select>
     <input name="data"
-        value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp';
-    echo '<input type="tel" name="pageno" id="pageno" class="form-control demo" />';
-    echo '<input type="submit" value="GENERATE">
-</form>';echo '
+        value="<?php echo (isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)'); ?>" /> &nbsp;
+    <input type="tel" name="pageno" id="pageno" class="form-control demo" />
+    <input type="submit" value="GENERATE">
+</form>
 <script>
     function printPage() {
         // Hide the form
