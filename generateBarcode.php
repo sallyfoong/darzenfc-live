@@ -51,80 +51,55 @@ $screen_type2 = 'Edit '.$page_title;
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title"><?php echo $page_title; ?> (One Page 33 barcode)
-                                </h4>
-                                <form action="" method="post">
-                                    <input type="text" name="txtid" value="<?php echo $txtid; ?>" class="dnone">
-                                    <div class="form-group">
-                                        <label for="hue-demo">Product</label>
-                                        <select name="productName" id="productName" class="form-control">
-                                            <?php
-                                        $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
-                                        $result = mysqli_query($connect, $query);
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
-                                        }
-                                        ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hue-demo">How many Barcode</label>
-                                        <input type="tel" name="pageno" id="pageno" class="form-control demo"
-                                            data-control="hue" required autofocus value="<?php echo $pageno; ?>"
-                                            onKeyPress="return isNumberKey(event);" />
-                                    </div>
-                                    <div>
-                                        <button type="submit" name="save" class="btn btn-success text-white">
+                                <h4 class="card-title"><?php echo $page_title; ?></h4>
+                                <div>
+                                    <a href="https://darzenfc.xyz/cms/live/qrcode/index.php"><button type="button"
+                                            name="save" class="btn btn-success text-white">
                                             Generate
-                                        </button>
-                                        <button type="reset" name="reset" id="resetForm"
-                                            class="btn btn-primary">Reset</button>
-                                    </div>
-                                    <div id="printLabel">
-                                    </div>
-                                </form>
+                                        </button></a>
+                                </div>
+                                <div id="printLabel">
+                                </div>
                             </div>
+                            <!-- editor -->
 
+                            <!-- ============================================================== -->
+                            <!-- End PAge Content -->
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- Right sidebar -->
+                            <!-- ============================================================== -->
+                            <!-- .right-sidebar -->
+                            <!-- ============================================================== -->
+                            <!-- End Right sidebar -->
+                            <!-- ============================================================== -->
                         </div>
-                        <!-- editor -->
-
                         <!-- ============================================================== -->
-                        <!-- End PAge Content -->
+                        <!-- End Container fluid  -->
                         <!-- ============================================================== -->
                         <!-- ============================================================== -->
-                        <!-- Right sidebar -->
-                        <!-- ============================================================== -->
-                        <!-- .right-sidebar -->
-                        <!-- ============================================================== -->
-                        <!-- End Right sidebar -->
-                        <!-- ============================================================== -->
+                        <?php echo $footer; ?>
                     </div>
                     <!-- ============================================================== -->
-                    <!-- End Container fluid  -->
+                    <!-- End Page wrapper  -->
                     <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <?php echo $footer; ?>
                 </div>
                 <!-- ============================================================== -->
-                <!-- End Page wrapper  -->
+                <!-- End Wrapper -->
                 <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Wrapper -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- All Jquery -->
-            <!-- ============================================================== -->
-            <?php include_once "include/footerJquery.php"; ?>
-            <script>
-            //***********************************//
-            // For select 2
-            //***********************************//
+                <!-- ============================================================== -->
+                <!-- All Jquery -->
+                <!-- ============================================================== -->
+                <?php include_once "include/footerJquery.php"; ?>
+                <script>
+                //***********************************//
+                // For select 2
+                //***********************************//
 
-            $('#resetForm').click(function() {
-                $('#pageno').val('');
-            });
-            </script>
+                $('#resetForm').click(function() {
+                    $('#pageno').val('');
+                });
+                </script>
 </body>
 
 </html>
