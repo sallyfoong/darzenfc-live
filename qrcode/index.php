@@ -34,7 +34,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $rowRetrieveInfo = mysqli_query($connect, $datainfo);
     $data = mysqli_fetch_assoc($rowRetrieveInfo);
     $barcode_next_number = $data['barcode_next_number'];
-
+    $countOP = 0;
     $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
     echo '<div class="container">';
         for ($x = 1; $x
@@ -49,14 +49,17 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
     $query2 = mysqli_query($connect,$sqlupd); 
     // Automatically trigger the print action using JavaScript
-    echo '<script>
-        window.onload = function() {
-            var form = document.querySelector("form");
-            form.submit(); 
-            form.style.display = "none";
-            window.print();
-        }
-    </script>';
+    if($countOP==0){
+        echo '<script>
+            window.onload = function() {
+                var form = document.querySelector("form");
+                form.submit(); 
+                form.style.display = "none";
+                window.print();
+            }
+        </script>';
+        $countOP = $countOP+1;
+    }
 }
 
 //display generated file
