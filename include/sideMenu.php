@@ -44,11 +44,12 @@ array(
         'y',
        'expand' => array(
 array('Brand', 'mdi mdi-domain', 'brand_list.php','12'),
-array('Item', 'mdi mdi-domain', 'item_list.php','16'),
 array('Create Barcode', 'mdi mdi-domain', 'generateBarcode.php','19'),
 array('Product Name', 'mdi mdi-domain', 'product_list.php','18'),
+array('Product Status', 'mdi mdi-domain', 'product_status_list.php','22'),
+array('Product Category', 'mdi mdi-domain', 'product_category_list.php','14'),
 ),
-        'pin' => array('12','16','18','19'),
+        'pin' => array('12','16','18','19','22','14'),
 ),array(
     "Order",
      'mdi mdi-codepen',
