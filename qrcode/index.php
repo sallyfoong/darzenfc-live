@@ -50,21 +50,13 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $query2 = mysqli_query($connect,$sqlupd); 
     // Automatically trigger the print action using JavaScript
         echo '<script>
-        // Initialize flag variable
-        var printTriggered = false;
-    
-        window.onload = function() {
-            var form = document.querySelector("form");
-            form.addEventListener("submit", function(event) {
-                event.preventDefault(); // Prevent form submission
-    
-                // Check if print action has already been triggered
-                if (!printTriggered) {
-                    printPage();
-                    printTriggered = true; // Set flag to true to indicate print action has been triggered
-                }
-            });
-        }
+            window.onload = function() {
+                var form = document.querySelector("form");
+                form.submit(); 
+                form.style.display = "none";
+                window.print();
+                printPage();
+            }
         </script>';
 
     echo '</div>';
