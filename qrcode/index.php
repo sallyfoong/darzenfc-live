@@ -39,11 +39,13 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $barcode_next_number = $data['barcode_next_number'];
 
     //get the product info
-    $prdInfo="SELECT p.`id`, p.`name`, b.`name` AS brand FROM product p JOIN brand b ON p.brand = b.`id` WHERE p.status = 'A' AND b.status = 'A' AND p.id = ".$_REQUEST['productName'].";
-    $rowPrdRetrieveInfo = mysqli_query($connect, $prdInfo);
-    $dataPrd = mysqli_fetch_assoc($rowPrdRetrieveInfo);
-    $brandName = $dataPrd['brand'];
-    $prdName = $dataPrd['name'];
+    // $prdInfo="SELECT p.`id`, p.`name`, b.`name` AS brand FROM product p JOIN brand b ON p.brand = b.`id` WHERE p.status = 'A' AND b.status = 'A' AND p.id = ".$_REQUEST['productName'].";
+    // $rowPrdRetrieveInfo = mysqli_query($connect, $prdInfo);
+    // $dataPrd = mysqli_fetch_assoc($rowPrdRetrieveInfo);
+    // $brandName = $dataPrd['brand'];
+    // $prdName = $dataPrd['name'];
+    $brandName = 't';
+    $prdName = '2';
     $combineBrandPrdName = $brandName.' '.$prdName;
     
     $countOP = 0;
@@ -51,7 +53,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     echo '<div class="container">';
         for ($x = 1; $x
         <= $_REQUEST['pageno']; $x++) { // user data
-            $urlRtn = "https://darzenfc.xyz/?barcode=".$barcode_next_number+$x;
+            $urlRtn = "https://darzenfc.xyz/?barcode=".($barcode_next_number + $x);
             $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
             echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$combineBrandPrdName.' '.$x.'
