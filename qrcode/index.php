@@ -74,6 +74,37 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
 
 ?>
 <style>
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .column {
+        flex-basis: 20%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .column img {
+        width: 100%;
+        height: auto;
+    }
+
+    p {
+        font-size: 11px;
+        margin: 0;
+    }
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
