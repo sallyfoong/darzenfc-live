@@ -120,7 +120,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     .title {
         font-size: 11px;
         margin: 0;
-        padding: 0 5px;
+        padding: 0 5px 5px;
     }
 }
 </style>
