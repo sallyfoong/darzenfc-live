@@ -59,7 +59,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             }
         </script>';
         $countOP = $countOP+1;
-        echo $countOP;exit();
+        echo $countOP;
     }
     echo '</div>';
 }
