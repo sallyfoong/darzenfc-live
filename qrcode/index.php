@@ -61,7 +61,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             $urlRtn = "https://darzenfc.xyz/?barcode=".($barcode_next_number + $x)."&pid=".$prdId;
             $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p class="title">'.$combineBrandPrdName.' '.$x.'
+            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p class="title">'.$combineBrandPrdName.' '.$barcode_next_number+$x.'
         </p>
     </div>';
     }
@@ -135,6 +135,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             }
         ?>
     </select>
+
     <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode" />
     <input type="submit" value="GENERATE">
 </form>

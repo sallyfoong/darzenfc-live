@@ -16,6 +16,7 @@ $multiArray = array(
        'expand' => array(
             array('Currency', 'mdi mdi-domain', 'currency_list.php','18'),
             array('Platform', 'mdi mdi-domain', 'platform_list.php','15'),
+            array('Warehouse', 'mdi mdi-domain', 'warehouse_list.php','21'),
             array('Department', 'mdi mdi-domain', 'department_list.php','9'),
             array('Marital Status', 'mdi mdi-account-multiple', 'marital_status_list.php','11'),
             array('Employment Type Status', 'mdi mdi-account-settings-variant', 'employment_type_list.php','10'),
@@ -26,7 +27,7 @@ $multiArray = array(
             array('User Group', 'mdi mdi-ungroup', 'usergroup_list.php','2'),
             array('User', 'mdi mdi-clipboard-account', 'user_list.php','1')
         ),
-        'pin' => array('5','4','3','2','1','6','8','10','11','9','15','18'),
+        'pin' => array('5','4','3','2','1','6','8','10','11','9','15','18','21'),
     ),
     array(
         'Employee',
