@@ -25,15 +25,27 @@ $errorCorrectionLevel = 'H';
 
 $matrixPointSize = 2;
 
+//barcode + product id + warehouse id
 
 if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     //it's very important!
     if (trim($_REQUEST['productName']) == '')
     die('data cannot be empty! <a href="?">back</a>');
+    
+    //get barcode start number
     $datainfo="SELECT barcode_prefix, barcode_next_number FROM projects WHERE id='1'";
     $rowRetrieveInfo = mysqli_query($connect, $datainfo);
     $data = mysqli_fetch_assoc($rowRetrieveInfo);
     $barcode_next_number = $data['barcode_next_number'];
+
+    //get the product info
+    $prdInfo="SELECT p.`id`, p.`name`, b.`name` AS brand FROM product p JOIN brand b ON p.brand = b.`id` WHERE p.status = 'A' AND b.status = 'A'";
+    $rowPrdRetrieveInfo = mysqli_query($connect, $prdInfo);
+    $dataPrd = mysqli_fetch_assoc($rowPrdRetrieveInfo);
+    $brandName = $dataPrd['brand'];
+    $prdName = $dataPrd['name'];
+    $combineBrandPrdName = $brandName.' '.$prdName;
+    
     $countOP = 0;
     $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
     echo '<div class="container">';
@@ -42,7 +54,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             $urlRtn = "https://darzenfc.xyz/?barcode=".$barcode_next_number+$x;
             $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
+            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$combineBrandPrdName.' '.$x.'
         </p>
     </div>';
     }
@@ -108,10 +120,10 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
 <form action="index.php" method="post">
     <select name="productName" id="productName" class="form-control">
         <?php
-            $query = "SELECT p.`id`, p.`name`, b.`name` AS brand FROM product p JOIN brand b ON p.brand = b.`id` WHERE p.status = 'A' AND b.status = 'A'";
+            $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
             $result = mysqli_query($connect, $query);
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
+                echo "<option value='" . $row['id'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
             }
         ?>
     </select>
