@@ -104,28 +104,6 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
         margin: 0;
     }
 }
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.column {
-    flex-basis: 20%;
-    text-align: center;
-    padding: 10px;
-}
-
-.column img {
-    width: 100%;
-    height: auto;
-}
-
-p {
-    font-size: 11px;
-    margin: 0;
-}
 </style>
 <form action="index.php" method="post">
     <select name="productName" id="productName" class="form-control">
