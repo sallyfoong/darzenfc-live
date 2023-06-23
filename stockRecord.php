@@ -25,8 +25,27 @@ if($barcode && $productId && $warehouseId){
             $dataWarehouse = mysqli_fetch_assoc($rowWarehouseRetrieveInfo);
             $warehouseId = $dataWarehouse['id'];
             if($warehouseId){
-                $sqlupd = "INSERT INTO ".$sub_db." (brand_id, product_id, stock_in_date , barcode, create_date, create_time, create_by, status) VALUES ('".$brandId."', '".$prdId."', NOW(), '".$barcode."', '".$cdate."', '".$ctime."', '".$cby."', 'A')";
-                $query2 = mysqli_query($connect,$sqlupd); 
+                $stockInfo = "SELECT id FROM stock_record WHERE status = 'A' AND barcode ='".$barcode."'";
+                $rowStockRetrieveInfo = mysqli_query($connect, $stockInfo);
+                $dataStock = mysqli_fetch_assoc($rowStockRetrieveInfo);
+                $stockId = $dataStock['id'];
+
+                if($stockId){
+                    //stock out
+                    /**
+                     * stock_out_date
+                     * platform_id
+                     * stock_out_person_in_charges
+                     * stock_out_customer_purchase_id
+                     */
+                }else{
+                    //stock in
+                    $sqlupd = "INSERT INTO stock_record (brand_id, product_id, stock_in_date , barcode, create_date, create_time, create_by, status) VALUES ('".$brandId."', '".$prdId."', NOW(), '".$barcode."', '".$cdate."', '".$ctime."', '".$cby."', 'A')";
+                    $query2 = mysqli_query($connect,$sqlupd); 
+                    //product_batch_code
+                    //stock_in_person_in
+                    //warehouse_id
+                }
             }
         }
     }
