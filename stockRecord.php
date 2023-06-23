@@ -40,11 +40,20 @@ if($barcode && $productId && $warehouseId){
                      */
                 }else{
                     //stock in
-                    $sqlupd = "INSERT INTO stock_record (brand_id, product_id, stock_in_date , barcode, create_date, create_time, create_by, status) VALUES ('".$brandId."', '".$prdId."', NOW(), '".$barcode."', '".$cdate."', '".$ctime."', '".$cby."', 'A')";
+                    $sqlupd = "INSERT INTO stock_record (brand_id, product_id, stock_in_date , barcode, warehouse_id, create_date, create_time, status) VALUES ('".$brandId."', '".$prdId."', NOW(), '".$barcode."', '".$warehouseId."', NOW(), NOW(), 'A')";
                     $query2 = mysqli_query($connect,$sqlupd); 
+
+                    if($query2){
+                        echo '<script language="javascript">';
+                        echo 'alert("Insert");';
+                        echo '</script>';
+                    }else{
+                        echo '<script language="javascript">';
+                        echo 'alert("Fail to Insert");';
+                        echo '</script>';
+                    }
                     //product_batch_code
                     //stock_in_person_in
-                    //warehouse_id
                 }
             }
         }

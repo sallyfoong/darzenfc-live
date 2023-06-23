@@ -58,7 +58,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno']) && isset($_REQ
     echo '<div class="container">';
         for ($x = 1; $x
         <= $_REQUEST['pageno']; $x++) { // user data
-            $urlRtn = "https://darzenfc.xyz/?barcode=".($barcode_next_number + $x)."&pid=".$prdId."&wid=".$_REQUEST['warehouseID'];
+            $urlRtn = "https://darzenfc.xyz/cms/live/stockRecord?barcode=".($barcode_next_number + $x)."&pid=".$prdId."&wid=".$_REQUEST['warehouseID'];
             $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
             echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p class="title">'.$combineBrandPrdName.' '.($barcode_next_number + $x).'
