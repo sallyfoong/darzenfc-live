@@ -135,7 +135,15 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             }
         ?>
     </select>
-
+    <select name="warehouseID" id="warehouseID" class="form-control">
+        <?php
+            $query = "SELECT `id`, `name` FROM warehouse WHERE status = 'A'";
+            $result = mysqli_query($connect, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value='" . $row['id'] . "'>".$row['name'] . "</option>";
+            }
+        ?>
+    </select>
     <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode" />
     <input type="submit" value="GENERATE">
 </form>
