@@ -91,7 +91,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     .column {
         flex-basis: 20%;
         text-align: center;
-        padding: 10px;
+        padding: 0px;
     }
 
     .column img {
