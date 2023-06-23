@@ -179,7 +179,7 @@ jQuery(document).ready(function() {
                                     <input type="text" name="txtid" value="<?php echo $txtid; ?>" class="dnone">
 
                                     <div class="form-group">
-                                        <label for="hue-demo">Warehouse Name</label>
+                                        <label for="hue-demo">Product Status</label>
                                         <input type="text" name="name" id="txtname" class="form-control demo"
                                             data-control="hue" required autofocus value="<?php echo $name; ?>" />
                                         <input type="text" name="org_txtname" value="<?php echo $name; ?>"
