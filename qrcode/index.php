@@ -144,7 +144,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno']) && isset($_REQ
             }
         ?>
     </select>
-    <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode" />
+    <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode" autofocus />
     <input type="submit" value="GENERATE">
     <a href="https://darzenfc.xyz/cms/live/generateBarcode.php">BACK</a>
 </form>
