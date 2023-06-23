@@ -39,11 +39,12 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $barcode_next_number = $data['barcode_next_number'];
 
     //get the product info
-    $prdInfo = "SELECT id, name, brand FROM ".$tblname3." WHERE status = 'A'";
+    $prdInfo = "SELECT id, name, brand FROM ".$tblname3." WHERE status = 'A' AND id ='".$_REQUEST['productName']."'";
     $rowPrdRetrieveInfo = mysqli_query($connect, $prdInfo);
     $dataPrd = mysqli_fetch_assoc($rowPrdRetrieveInfo);
     $prdName = $dataPrd['name'];
-    $brandId = $dataPrd['id'];
+    $brandId = $dataPrd['brand'];
+    $prdId = $dataPrd['id'];
     
     $brandInfo = "SELECT id, name FROM brand WHERE status = 'A' AND id='" . $brandId . "'";
     $rowBrandRetrieveInfo = mysqli_query($connect, $brandInfo);
@@ -57,7 +58,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     echo '<div class="container">';
         for ($x = 1; $x
         <= $_REQUEST['pageno']; $x++) { // user data
-            $urlRtn = "https://darzenfc.xyz/?barcode=".($barcode_next_number + $x);
+            $urlRtn = "https://darzenfc.xyz/?barcode=".($barcode_next_number + $x)."&pid=".$prdId;
             $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
             echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p class="title">'.$combineBrandPrdName.' '.$x.'
