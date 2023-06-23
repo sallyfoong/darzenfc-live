@@ -39,7 +39,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $barcode_next_number = $data['barcode_next_number'];
 
     //get the product info
-    $prdInfo="SELECT p.`id`, p.`name`, b.`name` AS brand FROM product p JOIN brand b ON p.brand = b.`id` WHERE p.status = 'A' AND b.status = 'A'";
+    $prdInfo="SELECT p.`id`, p.`name`, b.`name` AS brand FROM product p JOIN brand b ON p.brand = b.`id` WHERE p.status = 'A' AND b.status = 'A' AND p.id = ".$_REQUEST['productName'].";
     $rowPrdRetrieveInfo = mysqli_query($connect, $prdInfo);
     $dataPrd = mysqli_fetch_assoc($rowPrdRetrieveInfo);
     $brandName = $dataPrd['brand'];
