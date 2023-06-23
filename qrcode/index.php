@@ -60,7 +60,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             $urlRtn = "https://darzenfc.xyz/?barcode=".($barcode_next_number + $x);
             $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$combineBrandPrdName.' '.$x.'
+            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p class="title">'.$combineBrandPrdName.' '.$x.'
         </p>
     </div>';
     }
@@ -117,9 +117,10 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
         height: auto;
     }
 
-    p {
+    .title {
         font-size: 11px;
         margin: 0;
+        padding: 0 5px;
     }
 }
 </style>
