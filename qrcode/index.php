@@ -52,10 +52,8 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
         echo '<script>
             window.onload = function() {
                 var form = document.querySelector("form");
-                form.submit(); 
                 form.style.display = "none";
                 window.print();
-                printPage();
             }
         </script>';
 
