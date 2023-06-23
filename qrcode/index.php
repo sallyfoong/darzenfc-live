@@ -50,16 +50,17 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
     $query2 = mysqli_query($connect,$sqlupd); 
     // Automatically trigger the print action using JavaScript
     if($countOP==0){
-        echo '<script>
-            window.onload = function() {
-                var form = document.querySelector("form");
-                form.submit(); 
-                form.style.display = "none";
-                window.print();
-            }
-        </script>';
+        // echo '<script>
+        //     window.onload = function() {
+        //         var form = document.querySelector("form");
+        //         form.submit(); 
+        //         form.style.display = "none";
+        //         window.print();
+        //     }
+        // </script>';
         $countOP = $countOP+1;
     }
+    echo '</div>';
 }
 
 //display generated file
