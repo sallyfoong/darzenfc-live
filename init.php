@@ -9,7 +9,7 @@ define('dbuser', 'darzenfc_cms');
 define('dbpwd', 'Sallyfoong1997@');
 define('dbhost', '127.0.0.1:3306');
 define('dbname', 'darzenfc_cms');
-define('SITEURL', 'https://darzenfc.xyz/cms/html');
+define('SITEURL', 'https://darzenfc.xyz/cms/live');
 $SITEURL = SITEURL;
 define('ROOT', dirname(__FILE__));
 
