@@ -56,6 +56,12 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
                 window.print();
             }
             window.onafterprint = function() {
+                // Print page has been closed
+                // Remove the content of the container
+                var container = document.querySelector(".container");
+                container.innerHTML = "";
+                
+                // Show the form again
                 var form = document.querySelector("form");
                 form.style.display = "block";
             }
