@@ -61,7 +61,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             $urlRtn = "https://darzenfc.xyz/?barcode=".($barcode_next_number + $x)."&pid=".$prdId;
             $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
             QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p class="title">'.$combineBrandPrdName.' '.$barcode_next_number+$x.'
+            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p class="title">'.$combineBrandPrdName.' '.$x.'
         </p>
     </div>';
     }
@@ -135,15 +135,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
             }
         ?>
     </select>
-    <select name="warehouseID" id="warehouseID" class="form-control">
-        <?php
-            $query = "SELECT `id`, `name` FROM warehouse WHERE status = 'A'";
-            $result = mysqli_query($connect, $query);
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<option value='" . $row['id'] . "'>".$row['name'] . "</option>";
-            }
-        ?>
-    </select>
+
     <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode" />
     <input type="submit" value="GENERATE">
 </form>
