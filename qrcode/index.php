@@ -27,37 +27,36 @@ $matrixPointSize = 2;
 
 
 if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
+    //it's very important!
+    if (trim($_REQUEST['productName']) == '')
+    die('data cannot be empty! <a href="?">back</a>');
+    $datainfo="SELECT barcode_prefix, barcode_next_number FROM projects WHERE id='1'";
+    $rowRetrieveInfo = mysqli_query($connect, $datainfo);
+    $data = mysqli_fetch_assoc($rowRetrieveInfo);
+    $barcode_next_number = $data['barcode_next_number'];
 
-//it's very important!
-if (trim($_REQUEST['productName']) == '')
-die('data cannot be empty! <a href="?">back</a>');
-$datainfo="SELECT barcode_prefix, barcode_next_number FROM projects WHERE id='1'";
-$rowRetrieveInfo = mysqli_query($connect, $datainfo);
-$data = mysqli_fetch_assoc($rowRetrieveInfo);
-$barcode_next_number = $data['barcode_next_number'];
-
-$finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
-echo '<div class="container">';
-    for ($x = 1; $x
-    <= $_REQUEST['pageno']; $x++) { // user data
-        $urlRtn = "https://darzenfc.xyz/?barcode=".$barcode_next_number+$x;
-        $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
-        QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-        echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
-    </p>
-</div>';// Automatically trigger the print action using JavaScript
-echo '<script>
-    window.onload = function() {
-        var form = document.querySelector("form");
-        form.submit(); 
-        form.style.display = "none";
-        window.print();
+    $finalBarcodeNo = $barcode_next_number + $_REQUEST['pageno'];
+    echo '<div class="container">';
+        for ($x = 1; $x
+        <= $_REQUEST['pageno']; $x++) { // user data
+            $urlRtn = "https://darzenfc.xyz/?barcode=".$barcode_next_number+$x;
+            $filename=$PNG_TEMP_DIR.'test'.md5($urlRtn.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
+            QRcode::png($urlRtn, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+            echo '<div class="column"><img src="' .$PNG_WEB_DIR.basename($filename).'" />'.'<p>'.$_REQUEST['productName'].' '.$x.'
+        </p>
+    </div>';
     }
-</script>';
-}
-
-$sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
-$query2 = mysqli_query($connect,$sqlupd); 
+    $sqlupd = "UPDATE projects SET barcode_next_number = '".$finalBarcodeNo."' WHERE id = '1'";
+    $query2 = mysqli_query($connect,$sqlupd); 
+    // Automatically trigger the print action using JavaScript
+    echo '<script>
+        window.onload = function() {
+            var form = document.querySelector("form");
+            form.submit(); 
+            form.style.display = "none";
+            window.print();
+        }
+    </script>';
 }
 
 //display generated file
@@ -87,7 +86,7 @@ p {
 }
 </style>
 <form action="index.php" method="post">
-        <select name="productName" id="productName" class="form-control">
+    <select name="productName" id="productName" class="form-control">
         <?php
             $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
             $result = mysqli_query($connect, $query);
@@ -95,20 +94,20 @@ p {
                 echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
             }
         ?>
-        </select>
-    <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode"/>
+    </select>
+    <input type="tel" name="pageno" id="pageno" class="form-control demo" placeholder="How many Barcode" />
     <input type="submit" value="GENERATE">
 </form>
 <script>
-    function printPage() {
-        // Hide the form
-        var form = document.querySelector("form");
-        form.style.display = "none";
+function printPage() {
+    // Hide the form
+    var form = document.querySelector("form");
+    form.style.display = "none";
 
-        // Print the page
-        window.print();
+    // Print the page
+    window.print();
 
-        // Show the form again after printing
-        form.style.display = "block";
-    }
+    // Show the form again after printing
+    form.style.display = "block";
+}
 </script>
