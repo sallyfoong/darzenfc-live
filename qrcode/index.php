@@ -108,7 +108,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
 <form action="index.php" method="post">
     <select name="productName" id="productName" class="form-control">
         <?php
-            $query = "SELECT `id`, `name`, brand FROM ".$tblname3." WHERE status = 'A'";
+            $query = "SELECT p.`id`, p.`name`, b.`name` AS brand FROM product p JOIN brand b ON p.brand = b.`id` WHERE p.status = 'A' AND b.status = 'A'";
             $result = mysqli_query($connect, $query);
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<option value='" . $row['brand'].' '.$row['name'] . "'>" . $row['Brand']. "  ".$row['name'] . "</option>";
