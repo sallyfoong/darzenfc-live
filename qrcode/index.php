@@ -54,6 +54,7 @@ if (isset($_REQUEST['productName']) && isset($_REQUEST['pageno'])) {
                 var form = document.querySelector("form");
                 form.style.display = "none";
                 window.print();
+                form.style.display = "block";
             }
         </script>';
 
