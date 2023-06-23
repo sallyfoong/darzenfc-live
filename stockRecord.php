@@ -38,6 +38,9 @@ if($barcode && $productId && $warehouseId){
                      * stock_out_person_in_charges
                      * stock_out_customer_purchase_id
                      */
+                    echo '<script language="javascript">';
+                    echo 'alert("need update");';
+                    echo '</script>';
                 }else{
                     //stock in
                     $sqlupd = "INSERT INTO stock_record (brand_id, product_id, stock_in_date , barcode, warehouse_id, create_date, create_time, status) VALUES ('".$brandId."', '".$prdId."', NOW(), '".$barcode."', '".$warehouseId."', NOW(), NOW(), 'A')";
