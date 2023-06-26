@@ -68,6 +68,10 @@ if($barcode && $productId && $warehouseId){
         echo 'alert("Fail to Insert");';
         echo '</script>';
     }
+}else{
+    echo '<script language="javascript">';
+    echo 'alert("Lack of the data");';
+    echo '</script>';
 }
 ?>
 
