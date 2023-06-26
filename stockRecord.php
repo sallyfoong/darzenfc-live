@@ -63,6 +63,10 @@ if($barcode && $productId && $warehouseId){
                 }
             }
         }
+    }else{
+        echo '<script language="javascript">';
+        echo 'alert("Fail to Insert");';
+        echo '</script>';
     }
 }
 ?>
